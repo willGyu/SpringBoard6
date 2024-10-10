@@ -26,5 +26,9 @@ pom.xml - 자바, 스프링프레임워크 버전 설정 => Maven / update Proje
 
 properties / java build path / libraries / Classpath / add Library / Server runtime / apache tomcat 추가
 
-project Facets / Dynamic web module / 3.1             
+project Facets / Dynamic web module / 3.1     
+
+
+
+        
             
