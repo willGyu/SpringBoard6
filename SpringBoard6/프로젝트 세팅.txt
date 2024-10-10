@@ -30,5 +30,21 @@ project Facets / Dynamic web module / 3.1
 
 
 
+* 테이블 생성
+
+
+CREATE TABLE `springdb`.`tbl_board` (
+  `bno` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(200) NOT NULL,
+  `content` TEXT NULL,
+  `writer` VARCHAR(50) NOT NULL,
+  `viewcnt` INT NULL DEFAULT 0,
+  `regdate` TIMESTAMP NOT NULL DEFAULT now(),
+  PRIMARY KEY (`bno`));
+
+
+
+
+
         
             
