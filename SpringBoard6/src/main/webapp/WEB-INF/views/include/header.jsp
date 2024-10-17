@@ -34,11 +34,11 @@
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="${pageContext.request.contextPath }/resources/index2.html" class="logo">
+        <a href="/board/listAll" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>A</b>LT</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Zerock</b> PROJECT</span>
+          <span class="logo-lg"><b>ITWILLBS</b> PROJECT</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -318,8 +318,8 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="${pageContext.request.contextPath }/resources/index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                <li><a href="${pageContext.request.contextPath }/resources/index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                <li><a href="/board/regist"><i class="fa fa-circle-o"></i> 글 쓰기 </a></li>
+                <li><a href="/board/listAll"><i class="fa fa-circle-o"></i> 글 리스트</a></li>
               </ul>
             </li>
             <li class="treeview">
