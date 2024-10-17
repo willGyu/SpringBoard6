@@ -40,6 +40,13 @@
   </select>
   <!-- 글 정보 조회(select) -->
   
+  <!-- 글 조회수 1증가(update) -->
+  <update id="increseViewcnt">
+  	update tbl_board set viewcnt = viewcnt + 1 
+  	where bno = #{bno}
+  </update>
+  <!-- 글 조회수 1증가(update) -->
+  
   
   
   

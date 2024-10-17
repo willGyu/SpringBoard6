@@ -89,6 +89,7 @@ public class BoardController {
 		logger.debug(" 디비에 글 조회수 1증가 ");
 		
 		logger.debug(" 디비에 글내용 정보를 가져와서 출력(전달) ");
+		bService.read(bno);
 		
 		return "";
 	}
