@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -56,16 +57,19 @@ public class BoardController {
 	
 	// 게시판 리스트 - GET
 	@RequestMapping(value = "/listAll",method = RequestMethod.GET)
-	public void listAllGET() throws Exception{
+	public void listAllGET(Model model) throws Exception{
 		logger.debug(" /listAll -> listAllGET() 호출 ");
 		
 		// 서비스 -> DAO 메서드 호출 (출력할 정보 가져오기)
 		List<BoardVO> boardList = bService.listAll();
-		logger.debug(" "+boardList);
+		//logger.debug(" "+boardList);
+		logger.debug(" 리스트 사이즈 : "+boardList.size());
 		// Model 객체를 사용해서 정보를 저장
+		//		model.addAttribute(boardList);
+		model.addAttribute("boardList", boardList);
 		
 		// 연결된 뷰페이지에서 출력		
-		
+		logger.debug(" /board/listAll.jsp 페이지 이동 ");
 	}
 	
 	
