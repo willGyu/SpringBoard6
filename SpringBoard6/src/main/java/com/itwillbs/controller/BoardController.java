@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwillbs.domain.BoardVO;
@@ -76,6 +77,29 @@ public class BoardController {
 		// 연결된 뷰페이지에서 출력		
 		logger.debug(" /board/listAll.jsp 페이지 이동 ");
 	}
+	
+	
+	// 글 본문내용 보기
+	@RequestMapping(value = "/read",method = RequestMethod.GET)
+	public String readGET(@RequestParam("bno") int bno /* BoardVO vo */
+			             ,Model model) throws Exception {
+		logger.debug(" /board/read -> readGET()  호출");
+		logger.debug(" 전달정보 저장(파라메터) ");
+		logger.debug(" bno : "+bno);
+		
+		logger.debug(" 디비에 글 조회수 1증가 ");
+		bService.updateViewcnt(bno);
+		
+		logger.debug(" 디비에 글내용 정보를 가져와서 출력(전달) ");
+		BoardVO resultVO = bService.read(bno);
+		
+		// 전달할 정보를 저장
+		model.addAttribute(resultVO); // 전달이름 : boardVO
+
+		// 페이지 이동
+		return "/board/read";
+	}
+	
 	
 	
 	
