@@ -41,6 +41,12 @@ public class BoardServiceImpl implements BoardService {
 		logger.debug(" read(int bno) 호출 ");		
 		return bdao.getBoard(bno);
 	}
+
+	@Override
+	public void updateViewcnt(int bno) throws Exception {
+		logger.debug(" updateViewcnt(int bno) 호출 ");
+		bdao.updateViewcnt(bno);
+	}
 	
 	
 	
