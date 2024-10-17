@@ -17,4 +17,5 @@ public class BoardVO {
 	private int viewcnt;
 	private Timestamp regdate;
 	
+	
 }
