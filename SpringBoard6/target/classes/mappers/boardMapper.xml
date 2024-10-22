@@ -48,6 +48,20 @@
   <!-- 글 조회수 1증가(update) -->
   
   
+  <!-- 글정보 수정 (update)-->
+  <update id="updateBoard">
+  	 update tbl_board set title=#{title}, content=#{content}, writer=#{writer} 
+  	 where bno = #{bno}  
+  </update>	
+  <!-- 글정보 수정 (update)-->
+  
+  <!-- 글정보 삭제 (delete) -->
+  <delete id="deleteBoard" >
+  	  delete from tbl_board 
+  	  where bno = #{bno}  		
+  </delete>  
+  <!-- 글정보 삭제 (delete) -->
+  
   
   
 </mapper>
