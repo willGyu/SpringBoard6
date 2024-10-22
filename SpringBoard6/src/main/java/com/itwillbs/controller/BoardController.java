@@ -100,6 +100,60 @@ public class BoardController {
 		return "/board/read";
 	}
 	
+	// 게시판 글 수정하기-GET
+	@RequestMapping(value = "/modify",method = RequestMethod.GET)
+	public void  modifyGET(int bno,Model model) throws Exception{
+		logger.debug(" /board/modify -> modifyGET() 호출 ");
+		
+		// 전달받을 정보(bno) 저장
+		logger.debug(" bno : "+bno);
+		
+		// 서비스 -> DAO : 게시판 글정보를 가져오기
+		BoardVO resultVO = bService.read(bno);
+		// 가져온 글정보를 뷰페이지에 출력	
+		// model 객체에 정보를 저장해서 전달
+		model.addAttribute("boardVO", resultVO);
+		
+		//model.addAttribute(bService.read(bno)); //"boardVO"
+	}
+	
+	// 게시판 글 수정하기 - POST
+	@RequestMapping(value = "/modify",method = RequestMethod.POST)
+	public String modifyPOST(BoardVO vo,RedirectAttributes rttr) throws Exception{
+		logger.debug(" /board/modify -> modifyPOST() 호출 ");
+		
+		// 전달정보(파라메터) 저장(bno, title,content,writer)
+		logger.debug(" vo : "+vo);
+		
+		// 서비스 -> DAO : 글정보 수정하기 동작
+		bService.modify(vo);
+		
+		// 결과 확인 값을 전달(1회성)
+		rttr.addFlashAttribute("result", "modifyOK");
+		
+		// 다시 글 리스트 페이지로 이동
+		return "redirect:/board/listAll";
+	}
+	
+	// 게시판 글 삭제 - POST
+	@RequestMapping(value = "/remove",method = RequestMethod.POST)
+	public String removePOST(@RequestParam("bno") int bno) throws Exception{
+		logger.debug(" /board/remove -> removePOST()호출 ");
+		
+		// 전달정보 저장(bno)
+		logger.debug(" bno : "+bno);
+		// 서비스 -> DAO : 게시판 글 삭제 동작
+		int result = bService.remove(bno);
+		
+		if(result == 0) {
+			// 삭제 결과가 없음
+			return "redirect:/board/read?bno="+bno;
+		}
+		
+		// result != 0   글 삭제 성공
+		
+		return "redirect:/board/listAll";
+	}
 	
 	
 	

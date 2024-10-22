@@ -12,7 +12,11 @@ ${boardVO }
 	<div class="box-header with-border">
 		<h3 class="box-title">게시판 글 본문내용</h3>
 	</div>
-
+	
+	<!-- bno 정보를 전달하는 폼태그 -->
+	<form role="form" action="">
+		<input type="hidden" name="bno" value="${boardVO.bno }">
+	</form>
 
 	<div class="box-body">
 		<div class="form-group">
@@ -49,6 +53,27 @@ ${boardVO }
 <!-- jquery 사용해서 페이지 이동 버튼 활성화 -->
 <script type="text/javascript">
 	$(document).ready(function(){
+		
+		// bno를 가지고있는 폼태그 정보를 가져오기
+		var formObj = $("form[role='form']");
+		
+		//alert(formObj);
+		console.log(formObj);
+		
+		// 수정 버튼 클릭시
+		$(".btn-danger").click(function(){
+			formObj.attr("action","/board/modify");
+			formObj.attr("method","get");
+			formObj.submit();			
+		});
+		
+		// 삭제 버튼 클릭시
+		$(".btn-warning").click(function(){
+			formObj.attr("action","/board/remove");
+			formObj.attr("method","post");
+			formObj.submit();
+		});
+		
 		
 		// 목록버튼 클릭시 게시판 목록으로 이동
 		$(".btn-success").click(function(){

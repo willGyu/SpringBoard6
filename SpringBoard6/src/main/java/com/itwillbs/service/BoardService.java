@@ -18,4 +18,10 @@ public interface BoardService {
 	// 글 조회수 1증가
 	public void updateViewcnt(int bno) throws Exception;
 	
+	// 글 정보 수정 동작
+	public void modify(BoardVO vo) throws Exception;
+	 
+	// 글 정보 삭제 동작
+	public int remove(int bno) throws Exception;
+	
 }
