@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.BoardVO;
+import com.itwillbs.domain.Criteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -68,6 +69,38 @@ public class BoardDAOImpl implements BoardDAO {
 		logger.debug("bno : "+bno);
 		return sqlSession.delete(NAMESPACE + "deleteBoard", bno);
 	}
+
+
+	@Override
+	public List<BoardVO> listPage(int page) throws Exception {
+		logger.debug(" listPage(int page) 호출 ");
+		
+		if(page <= 0) {
+			page = 1;
+		}
+		// 1-0 / 2-10 / 3-20 / 4-30 ....
+		// 페이지에 따른 시작 위치(인덱스)계산
+		page = (page - 1) * 10;
+		
+		return sqlSession.selectList(NAMESPACE + "listPage",page);
+	}
+
+
+	@Override
+	public List<BoardVO> listPage(Criteria cri) throws Exception {
+		logger.debug(" listPage(Criteria cri) 실행 ");
+		logger.debug(" cri1111 : "+cri);
+//		logger.debug(" cri2222 : "+cri.getStartPage());
+		
+		logger.debug(" cri1111 : "+cri);
+		
+		return sqlSession.selectList(NAMESPACE+"listPage",cri);
+	}
+	
+	
+	
+	
+	
 	
 	
 	
