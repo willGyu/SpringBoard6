@@ -21,4 +21,6 @@ public interface BoardDAO {
 	
 	public int deleteBoard(int bno) throws Exception;
 	
+	public int getTotalCount() throws Exception;
+	
 }

@@ -7,8 +7,8 @@
 
 <%-- 	${boardList } <hr> --%>
 <%-- 	${requestScope } --%>
-result : ${result }
-
+result : ${result } <br>
+pageVO : ${pageVO } <br>
 <div class="box">
 	<div class="box-header with-border">
 		<h3 class="box-title">게시판 리스트(목록)</h3>
@@ -39,11 +39,19 @@ result : ${result }
 
 	<div class="box-footer clearfix">
 		<ul class="pagination pagination-sm no-margin pull-right">
-			<li><a href="#">«</a></li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">»</a></li>
+		    <!-- 이전 버튼 -->
+		    <c:if test="${pageVO.prev }">
+				<li><a href="/board/listPage?page=${pageVO.startPage - 1 }">«</a></li>
+			</c:if>
+			
+			<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }">	
+				<li ${pageVO.cri.page == i? 'class="active"':'' }><a href="/board/listPage?page=${i }">${i }</a></li>
+			</c:forEach>
+			
+			<!-- 다음 버튼 -->
+			<c:if test="${pageVO.next}">
+				<li><a href="/board/listPage?page=${pageVO.endPage + 1 }">»</a></li>
+			</c:if>
 		</ul>
 	</div>
 </div>

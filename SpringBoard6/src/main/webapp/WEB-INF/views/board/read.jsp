@@ -77,7 +77,8 @@ ${boardVO }
 		
 		// 목록버튼 클릭시 게시판 목록으로 이동
 		$(".btn-success").click(function(){
-			location.href="/board/listAll";			
+			//location.href="/board/listAll";			
+			location.href="/board/listPage";			
 		});
 		
 	});

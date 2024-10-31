@@ -24,6 +24,8 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	private static final String NAMESPACE 
 	                   ="com.itwillbs.mapper.BoardMapper.";
+//	private static final String NAMESPACE_MEM 
+//			="com.itwillbs.mapper.MemberMapper.";
 	
 	
 	@Override
@@ -96,9 +98,13 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		return sqlSession.selectList(NAMESPACE+"listPage",cri);
 	}
-	
-	
-	
+
+
+	@Override
+	public int getTotalCount() throws Exception {
+		logger.debug(" getTotalCount() 실행 ");
+		return sqlSession.selectOne(NAMESPACE + "pageCnt");
+	}
 	
 	
 	
