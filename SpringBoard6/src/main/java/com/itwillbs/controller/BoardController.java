@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwillbs.domain.BoardVO;
+import com.itwillbs.domain.Criteria;
+import com.itwillbs.domain.PageVO;
 import com.itwillbs.service.BoardService;
 
 @Controller
@@ -58,7 +60,8 @@ public class BoardController {
 		
 		// 페이지 이동(list)
 		
-		return "redirect:/board/listAll";
+		//return "redirect:/board/listAll";
+		return "redirect:/board/listPage";
 	}
 	
 	// 게시판 리스트 - GET
@@ -76,6 +79,39 @@ public class BoardController {
 		
 		// 연결된 뷰페이지에서 출력		
 		logger.debug(" /board/listAll.jsp 페이지 이동 ");
+	}
+	
+	// 게시판 리스트(page) - GET
+	@RequestMapping(value = "/listPage",method = RequestMethod.GET)
+	public String listPageGET(Criteria cri, Model model) throws Exception{
+		logger.debug(" /listPage -> listPageGET() 호출 ");
+		
+//		Criteria cri = new Criteria();
+//		cri.setPage(2);
+//		cri.setPageSize(20);
+		
+		// 페이징처리 블럭정보 계산&정보 저장
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+		//pageVO.setTotalCount(40); // 임시 - 총개수를 직접 작성
+		pageVO.setTotalCount(bService.getTotalCount()); //  총개수를 DB에서 가져오기
+		
+		// 서비스 -> DAO 메서드 호출 (출력할 정보 가져오기)
+		//List<BoardVO> boardList = bService.listAll();
+		List<BoardVO> boardList = bService.listPage(cri);
+		//logger.debug(" "+boardList);
+		logger.debug(" 리스트 사이즈 : "+boardList.size());
+		// Model 객체를 사용해서 정보를 저장
+		//		model.addAttribute(boardList);
+		model.addAttribute("boardList", boardList);
+		// 페이징처리 정보 전달
+		model.addAttribute("pageVO", pageVO);
+		
+		
+		// 연결된 뷰페이지에서 출력		
+		logger.debug(" /board/listAll.jsp 페이지 이동 ");
+		
+		return "/board/listAll";
 	}
 	
 	
@@ -132,7 +168,8 @@ public class BoardController {
 		rttr.addFlashAttribute("result", "modifyOK");
 		
 		// 다시 글 리스트 페이지로 이동
-		return "redirect:/board/listAll";
+		//return "redirect:/board/listAll";
+		return "redirect:/board/listPage";
 	}
 	
 	// 게시판 글 삭제 - POST
@@ -152,7 +189,8 @@ public class BoardController {
 		
 		// result != 0   글 삭제 성공
 		
-		return "redirect:/board/listAll";
+		//return "redirect:/board/listAll";
+		return "redirect:/board/listPage";
 	}
 	
 	

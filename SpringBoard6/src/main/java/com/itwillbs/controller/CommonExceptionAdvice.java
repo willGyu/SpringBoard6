@@ -52,6 +52,7 @@ public class CommonExceptionAdvice {
 		logger.debug(" URL : "+request.getRequestURL());
 		
 		return "error";
+
 	}
 	
 	
