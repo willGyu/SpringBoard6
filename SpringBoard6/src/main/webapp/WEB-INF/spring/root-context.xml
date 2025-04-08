@@ -12,9 +12,9 @@
 		<property name="driverClassName"
 		          value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
 		<property name="url" 
-		          value="jdbc:log4jdbc:mysql://itwillbs.com:3306/c6d2412t2p1" />
+		          value="jdbc:log4jdbc:mysql://localhost:3306/springdb" />
         <property name="username" 
-                  value="c6d2412t2p1" />
+                  value="root" />
         <property name="password"
                   value="1234"/>          		                    
 	
